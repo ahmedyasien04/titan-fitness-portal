@@ -1,0 +1,20 @@
+import { Routes } from '@angular/router';
+export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  { path: 'dashboard', loadComponent: () => import('./dashboard/dashboard').then(m => m.Dashboard) },
+  { path: 'members', loadComponent: () => import('./members/member-directory').then(m => m.MemberDirectory) },
+  { path: 'members/:id', loadComponent: () => import('./members/member-profile').then(m => m.MemberProfile) },
+  { path: 'members/:id/freeze', loadComponent: () => import('./members/freeze').then(m => m.Freeze) },
+  { path: 'classes', loadComponent: () => import('./classes/classes').then(m => m.Classes) },
+  { path: 'classes/:id/book', loadComponent: () => import('./classes/book-session').then(m => m.BookSession) },
+  { path: 'classes/:id/book/member', loadComponent: () => import('./classes/book-session').then(m => m.BookMember) },
+  { path: 'trainers', loadComponent: () => import('./trainers/trainer-directory').then(m => m.TrainerDirectory) },
+  { path: 'trainers/new', data: { mode: 'add' }, loadComponent: () => import('./trainers/trainer-details').then(m => m.TrainerDetails) },
+  { path: 'trainers/:id', data: { mode: 'view' }, loadComponent: () => import('./trainers/trainer-details').then(m => m.TrainerDetails) },
+  { path: 'trainers/:id/edit', data: { mode: 'edit' }, loadComponent: () => import('./trainers/trainer-details').then(m => m.TrainerDetails) },
+  { path: 'plans', loadComponent: () => import('./plans/plan-catalogue').then(m => m.PlanCatalogue) },
+  { path: 'plans/new', data: { mode: 'add' }, loadComponent: () => import('./plans/plan-details').then(m => m.PlanDetails) },
+  { path: 'plans/:id', data: { mode: 'view' }, loadComponent: () => import('./plans/plan-details').then(m => m.PlanDetails) },
+  { path: 'plans/:id/edit', data: { mode: 'edit' }, loadComponent: () => import('./plans/plan-details').then(m => m.PlanDetails) },
+  { path: '**', loadComponent: () => import('./shared/not-found').then(m => m.NotFound) },
+];
